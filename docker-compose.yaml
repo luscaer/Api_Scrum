@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: scrum_db
+    restart: always
+    environment:
+      POSTGRES_DB: scrum_app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: scrum_backend
+    depends_on:
+      - db  # Aguarda o banco iniciar antes de rodar o backend
+    ports:
+      - "1894:1894"  # Expondo a API na porta 1894
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/scrum_app
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+volumes:
+  postgres_data:
