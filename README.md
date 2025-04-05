@@ -33,10 +33,11 @@ docker compose up
 
 ## 📮 Endpoints disponíveis
 
-### 📌 POST – Criar ProductOwner
+### 📌 POST – Criar ProductOwner | Projeto
 
 **URL:**  
-`http://localhost:1894/api/product-owner/save`
+`http://localhost:1894/api/product-owner/save` <br>
+`http://localhost:1894/api/project/save`
 
 **Método:** `POST`
 
@@ -50,11 +51,23 @@ docker compose up
   "responsibilities": "responsibilities"
 }
 ```
+```json
+{
+  "name": "name",
+  "expectations": "expectations",
+  "initialDate": "2025-01-01",
+  "finalDate": "2025-01-01",
+  "productOwner": {
+    "id": 1
+  }
+}
+```
 
-### ✏️ PUT – Atualizar ProductOwner
+### ✏️ PUT – Atualizar ProductOwner | Projeto
 
 **URL:**  
-`http://localhost:1894/api/product-owner/update/{id}`
+`http://localhost:1894/api/product-owner/update/{id}` <br>
+`http://localhost:1894/api/project/update/{id}`
 
 **Método:** `PUT`
 
@@ -68,25 +81,39 @@ docker compose up
   "responsibilities": "responsibilities updated"
 }
 ```
+```json
+{
+  "name": "name",
+  "expectations": "expectations",
+  "initialDate": "2025-01-01",
+  "finalDate": "2025-01-01",
+  "productOwner": {
+    "id": 1
+  }
+}
+```
 
-### ❌ DELETE – Deletar ProductOwner
+### ❌ DELETE – Deletar ProductOwner | Projeto
 
 **URL:**  
-`http://localhost:1894/api/product-owner/delete/{id}`
+`http://localhost:1894/api/product-owner/delete/{id}` <br>
+`http://localhost:1894/api/project/delete/{id}`
 
 **Método:** `DELETE`
 
-### 📄 GET – Buscar todos os ProductOwners
+### 📄 GET – Buscar todos os ProductOwners | Projetos
 
 **URL:**  
-`http://localhost:1894/api/product-owner/findAll`
+`http://localhost:1894/api/product-owner/findAll` <br>
+`http://localhost:1894/api/project/findAll`
 
 **Método:** `GET`
 
-### 🔍 GET – Buscar ProductOwner por ID
+### 🔍 GET – Buscar ProductOwner | Projeto por ID
 
 **URL:**  
-`http://localhost:1894/api/product-owner/findById/{id}`
+`http://localhost:1894/api/product-owner/findById/{id}` <br>
+`http://localhost:1894/api/project/findById/{id}`
 
 **Método:** `GET`
 
