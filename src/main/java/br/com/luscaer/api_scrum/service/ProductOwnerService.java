@@ -1,6 +1,7 @@
 package br.com.luscaer.api_scrum.service;
 
 import br.com.luscaer.api_scrum.entity.ProductOwner;
+import br.com.luscaer.api_scrum.enums.Gender;
 import br.com.luscaer.api_scrum.repository.ProductOwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,13 @@ public class ProductOwnerService {
     public ProductOwner findById(Long id) {
         return productOwnerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("ProductOwner not found"));
+    }
+
+    public List<ProductOwner> findByName(String name) {
+        return this.productOwnerRepository.findByNameContainingIgnoreCaseOrderByNameAsc(name);
+    }
+
+    public List<ProductOwner> findByGender(Gender gender) {
+        return this.productOwnerRepository.findByGenderOrderByNameAsc(gender);
     }
 }

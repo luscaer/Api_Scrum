@@ -1,6 +1,7 @@
 package br.com.luscaer.api_scrum.controller;
 
 import br.com.luscaer.api_scrum.entity.ProductOwner;
+import br.com.luscaer.api_scrum.enums.Gender;
 import br.com.luscaer.api_scrum.service.ProductOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ProductOwnerController {
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody ProductOwner productOwner) {
         try {
-            String message = productOwnerService.save(productOwner);
+            String message = this.productOwnerService.save(productOwner);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -29,7 +30,7 @@ public class ProductOwnerController {
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@RequestBody ProductOwner productOwner, @PathVariable Long id) {
         try {
-            String message = productOwnerService.update(productOwner, id);
+            String message = this.productOwnerService.update(productOwner, id);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -39,7 +40,7 @@ public class ProductOwnerController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         try {
-            String message = productOwnerService.delete(id);
+            String message = this.productOwnerService.delete(id);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -49,7 +50,7 @@ public class ProductOwnerController {
     @GetMapping("/findAll")
     public ResponseEntity<List<ProductOwner>> findAll() {
         try {
-            List<ProductOwner> productOwnerList = productOwnerService.findAll();
+            List<ProductOwner> productOwnerList = this.productOwnerService.findAll();
             return new ResponseEntity<>(productOwnerList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -59,8 +60,28 @@ public class ProductOwnerController {
     @GetMapping("/findById/{id}")
     public ResponseEntity<ProductOwner> findById(@PathVariable Long id) {
         try {
-            ProductOwner productOwner = productOwnerService.findById(id);
+            ProductOwner productOwner = this.productOwnerService.findById(id);
             return new ResponseEntity<>(productOwner, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/findByName")
+    public ResponseEntity<List<ProductOwner>> findByName(@RequestParam String name) {
+        try {
+            List<ProductOwner> productOwnerList = this.productOwnerService.findByName(name);
+            return new ResponseEntity<>(productOwnerList, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/findByGender")
+    public ResponseEntity<List<ProductOwner>> findByGender(@RequestParam Gender gender) {
+        try {
+            List<ProductOwner> productOwnerList = this.productOwnerService.findByGender(gender);
+            return new ResponseEntity<>(productOwnerList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

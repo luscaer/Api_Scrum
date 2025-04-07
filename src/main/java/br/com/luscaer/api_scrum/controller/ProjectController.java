@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class ProjectController {
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody Project project) {
         try {
-            String message = projectService.save(project);
+            String message = this.projectService.save(project);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -29,7 +30,7 @@ public class ProjectController {
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@RequestBody Project project, @PathVariable Long id) {
         try {
-            String message = projectService.update(project, id);
+            String message = this.projectService.update(project, id);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -39,7 +40,7 @@ public class ProjectController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         try {
-            String message = projectService.delete(id);
+            String message = this.projectService.delete(id);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -49,7 +50,7 @@ public class ProjectController {
     @GetMapping("/findAll")
     public ResponseEntity<List<Project>> findAll() {
         try {
-            List<Project> projectList = projectService.findAll();
+            List<Project> projectList = this.projectService.findAll();
             return new ResponseEntity<>(projectList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -59,8 +60,38 @@ public class ProjectController {
     @GetMapping("/findById/{id}")
     public ResponseEntity<Project> findById(@PathVariable Long id) {
         try {
-            Project project = projectService.findById(id);
+            Project project = this.projectService.findById(id);
             return new ResponseEntity<>(project, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/findByName")
+    public ResponseEntity<List<Project>> findByName(@RequestParam String name) {
+        try {
+            List<Project> projectList = this.projectService.findByName(name);
+            return new ResponseEntity<>(projectList, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/findByProductOwner")
+    public ResponseEntity<Project> findByProductOwner(@RequestParam Long id) {
+        try {
+            Project project = this.projectService.findByProductOwner(id);
+            return new ResponseEntity<>(project, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/searchByDate")
+    public ResponseEntity<List<Project>> findProjectsByDateRange(@RequestParam LocalDate start, @RequestParam LocalDate end) {
+        try {
+            List<Project> projectList = this.projectService.findProjectsByDateRange(start, end);
+            return new ResponseEntity<>(projectList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
