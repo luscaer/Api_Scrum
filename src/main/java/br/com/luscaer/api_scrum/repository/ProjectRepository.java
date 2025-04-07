@@ -13,7 +13,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     List<Project> findByNameContainingIgnoreCaseOrderByNameAsc(String name);
 
-    Project findByProductOwner(ProductOwner productOwner);
+    List<Project> findByProductOwner(ProductOwner productOwner);
 
     List<Project> findByInitialDateGreaterThanEqualAndFinalDateLessThanEqual(LocalDate start, LocalDate end);
 //    @Query("SELECT p FROM Project p WHERE p.initialDate >= :start AND p.finalDate <= :end")

@@ -43,14 +43,14 @@ public class ProjectService {
 
     public Project findById(Long id) {
         return projectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("ProductOwner not found"));
+                .orElseThrow(() -> new RuntimeException("Project not found"));
     }
 
     public List<Project> findByName(String name) {
         return this.projectRepository.findByNameContainingIgnoreCaseOrderByNameAsc(name);
     }
 
-    public Project findByProductOwner(Long id) {
+    public List<Project> findByProductOwner(Long id) {
         ProductOwner productOwner = new ProductOwner();
         productOwner.setId(id);
         return this.projectRepository.findByProductOwner(productOwner);

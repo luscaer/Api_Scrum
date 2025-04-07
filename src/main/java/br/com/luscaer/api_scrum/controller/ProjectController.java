@@ -78,10 +78,10 @@ public class ProjectController {
     }
 
     @GetMapping("/findByProductOwner")
-    public ResponseEntity<Project> findByProductOwner(@RequestParam Long id) {
+    public ResponseEntity<List<Project>> findByProductOwner(@RequestParam Long id) {
         try {
-            Project project = this.projectService.findByProductOwner(id);
-            return new ResponseEntity<>(project, HttpStatus.OK);
+            List<Project> projectList = this.projectService.findByProductOwner(id);
+            return new ResponseEntity<>(projectList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
