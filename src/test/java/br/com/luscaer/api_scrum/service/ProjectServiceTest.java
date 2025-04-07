@@ -4,7 +4,6 @@ package br.com.luscaer.api_scrum.service;
 import br.com.luscaer.api_scrum.entity.ProductOwner;
 import br.com.luscaer.api_scrum.entity.Project;
 import br.com.luscaer.api_scrum.repository.ProjectRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
