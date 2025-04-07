@@ -101,19 +101,25 @@ docker compose up
 
 **Método:** `DELETE`
 
-### 📄 GET – Buscar todos os ProductOwners | Projetos
+### 📄 GET – Buscar em ProductOwners
 
 **URL:**  
 `http://localhost:1894/api/product-owner/findAll` <br>
-`http://localhost:1894/api/project/findAll`
+`http://localhost:1894/api/product-owner/findById/{id}` <br>
+`http://localhost:1894/api/product-owner/findByName?name=name` <br>
+`http://localhost:1894/api/product-owner/findByGender?gender=gender`
 
 **Método:** `GET`
 
-### 🔍 GET – Buscar ProductOwner | Projeto por ID
+### 🔍 GET – Buscar em Projeto
 
 **URL:**  
-`http://localhost:1894/api/product-owner/findById/{id}` <br>
-`http://localhost:1894/api/project/findById/{id}`
+
+`http://localhost:1894/api/project/findAll` <br>
+`http://localhost:1894/api/project/findById/{id}` <br>
+`http://localhost:1894/api/project/findByName?name=name` <br>
+`http://localhost:1894/api/project/findByProductOwner?id=id` <br>
+`http://localhost:1894/api/project/searchByDate?start=2025-01-01&end=2027-01-01`
 
 **Método:** `GET`
 
